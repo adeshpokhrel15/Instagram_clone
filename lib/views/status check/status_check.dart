@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:instagram_clone/core/authentication/auth_provider.dart';
-import 'package:instagram_clone/features/home/login_screen.dart';
+import 'package:instagram_clone/Provider/authentication/auth_provider.dart';
+import 'package:instagram_clone/views/home/login_screen.dart';
 
 import '../main screen/main_screen.dart';
 
