@@ -118,6 +118,9 @@ class LoginScreen extends StatelessWidget {
                                       password: passwordController.text.trim(),
                                     );
                               } else {
+                                if (dbimage.image == null) {
+                                  print('please select an image');
+                                }
                                 ref.read(logSignProvider).signUp(
                                       userName: usernameController.text.trim(),
                                       email: mailController.text.trim(),
