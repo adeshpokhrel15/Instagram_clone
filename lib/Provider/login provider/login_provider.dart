@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final loginProvider =
-    StateNotifierProvider<LoginProvider, bool>((ref) => LoginProvider());
+final loginProvider = StateNotifierProvider.autoDispose<LoginProvider, bool>(
+    (ref) => LoginProvider());
 
 // This is the provider
 class LoginProvider extends StateNotifier<bool> {
