@@ -18,4 +18,9 @@ class UserProvider {
         .map((e) => User.fromJson(e.data() as Map<String, dynamic>))
         .toList();
   }
+
+  Future<User> getLoginUserData(String userId) async {
+    final response = await _dbModel.where('userId', isEqualTo: userId).get();
+    return User.fromJson(response.docs[0].data() as Map<String, dynamic>);
+  }
 }

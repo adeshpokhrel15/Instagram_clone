@@ -32,13 +32,14 @@ class LoginSignUpProvider {
 
       final url = await ref.getDownloadURL(); //getting the url of the image
 
-      await FirebaseAuth.instance
+      final responseUser = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
 
       dbUsers.add({
         'email': email,
         'username': userName,
         'userImage': url,
+        'userId': responseUser.user!.uid,
       });
 
       return 'success';
