@@ -4,6 +4,7 @@ import 'package:instagram_clone/Provider/authentication/auth_provider.dart';
 import 'package:instagram_clone/features/users/data/data_source/user_model_data_source.dart';
 import 'package:instagram_clone/features/users/widgets/drawer_widgets.dart';
 
+import '../../features/users/widgets/create_widgets.dart';
 import '../../features/users/widgets/user_show.dart';
 
 class MainScreen extends StatelessWidget {
@@ -20,9 +21,8 @@ class MainScreen extends StatelessWidget {
           actions: [
             TextButton(
                 onPressed: () {
-                  ref
-                      .read(logSignProvider)
-                      .logOut(); //calling logOut function from auth_provider.dart
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => CreateScreen()));
                 },
                 child: Text(
                   "Create",

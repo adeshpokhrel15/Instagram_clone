@@ -2,8 +2,8 @@ class Post {
   late String title;
   late String detail;
   late String imageUrl;
-  late String id;
-  late String userId;
+  late String id; //post id
+  late String userId; //user id
 
   Post({
     required this.title,
@@ -12,14 +12,4 @@ class Post {
     required this.id,
     required this.userId,
   });
-
-  factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(
-      title: json['title'],
-      detail: json['detail'],
-      imageUrl: json['imageUrl'],
-      id: json['id'],
-      userId: json['userId'],
-    );
-  }
 }
