@@ -41,6 +41,7 @@ dependencies:
   firebase_storage: ^11.0.9 #storaing images with the app
   flutter_riverpod: ^2.1.3 #state management tools
   image_picker: ^0.8.6 #for selecting image
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:

@@ -33,6 +33,7 @@ class PostProvider {
         'detail': detail,
         'imageUrl': url,
         'userId': userId,
+        'imageId': imageID,
       });
 
       return 'success';
@@ -58,6 +59,7 @@ class PostProvider {
         imageUrl: data['imageUrl'],
         id: e.id,
         userId: data['userId'],
+        imageId: data['imageId'],
       );
     }).toList();
   }

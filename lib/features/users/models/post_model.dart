@@ -4,6 +4,7 @@ class Post {
   late String imageUrl;
   late String id; //post id
   late String userId; //user id
+  late String imageId;
 
   Post({
     required this.title,
@@ -11,5 +12,6 @@ class Post {
     required this.imageUrl,
     required this.id,
     required this.userId,
+    required this.imageId,
   });
 }
