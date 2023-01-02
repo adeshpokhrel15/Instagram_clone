@@ -2,14 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:instagram_clone/Provider/CRUD/crud_provider.dart';
 import 'package:instagram_clone/Provider/authentication/auth_provider.dart';
 import 'package:instagram_clone/features/users/data/data_source/post_model_data_provider.dart';
 import 'package:instagram_clone/features/users/data/data_source/user_model_data_source.dart';
 import 'package:instagram_clone/features/users/widgets/drawer_widgets.dart';
-import 'package:instagram_clone/features/users/widgets/edit_page.dart';
 
+import '../../Provider/CRUD/crud_provider.dart';
 import '../../features/users/widgets/create_widgets.dart';
+import '../../features/users/widgets/edit_page.dart';
 import '../../features/users/widgets/user_show.dart';
 
 class MainScreen extends StatelessWidget {
@@ -54,7 +54,7 @@ class MainScreen extends StatelessWidget {
             postData.when(
               data: (data) {
                 return Container(
-                  height: 600,
+                  height: 500,
                   child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: data.length,
@@ -62,7 +62,7 @@ class MainScreen extends StatelessWidget {
                         return Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 10, vertical: 10),
-                          height: 300,
+                          height: auth != data[index].userId ? 350 : 400,
                           width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,6 +121,21 @@ class MainScreen extends StatelessWidget {
                                   fit: BoxFit.cover,
                                 ),
                               ),
+                              if (auth != data[index].userId)
+                                Row(
+                                  children: [
+                                    Spacer(),
+                                    Text(data[index].likes.like == 0
+                                        ? ''
+                                        : '${data[index].likes.like} likes'),
+                                    IconButton(
+                                        onPressed: () {
+                                          if (data[index].likes.username ==
+                                              0) {}
+                                        },
+                                        icon: Icon(Icons.thumb_up)),
+                                  ],
+                                )
                             ],
                           ),
                         );

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:instagram_clone/features/users/models/post_model.dart';
 
 final crudProvider = Provider((ref) => CrudProvider());
 
@@ -67,6 +68,24 @@ class CrudProvider {
 
       dbPost.doc(postId).delete();
       //updating the post
+
+      return 'success';
+    } on FirebaseException catch (e) {
+      print(e);
+
+      return '';
+    }
+  }
+
+  Future<String> addLike({
+    required String postId,
+    required Like like,
+    //image type is File type
+  }) async {
+    try {
+      await dbPost.doc(postId).update({
+        'likes': like.toJson(),
+      });
 
       return 'success';
     } on FirebaseException catch (e) {
