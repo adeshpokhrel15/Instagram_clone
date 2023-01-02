@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:instagram_clone/features/users/data/data_source/post_model_data_provider.dart';
+import 'package:instagram_clone/features/users/models/post_model.dart';
 
 import '../../../Provider/image provider/image_provider.dart';
 
@@ -77,13 +78,18 @@ class CreateScreen extends StatelessWidget {
                             if (dbimage == null) {
                               Text("Please select the image");
                             } else {
-                              final response = await ref
-                                  .read(postCrudProvider)
-                                  .addPost(
-                                      title: titleController.text,
-                                      detail: detailController.text,
-                                      image: dbimage.image!,
-                                      userId: auth);
+                              Like newLike = Like(
+                                like: 0,
+                                username: [],
+                              );
+                              final response =
+                                  await ref.read(postCrudProvider).addPost(
+                                        title: titleController.text,
+                                        detail: detailController.text,
+                                        image: dbimage.image!,
+                                        userId: auth,
+                                        likes: newLike,
+                                      );
                               if (response == 'success') {
                                 Navigator.of(context).pop();
                               }

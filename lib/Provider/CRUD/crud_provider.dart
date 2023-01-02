@@ -54,4 +54,25 @@ class CrudProvider {
       return '';
     }
   }
+
+  Future<String> removePost({
+    required String postId,
+    required String imageID,
+    //image type is File type
+  }) async {
+    try {
+      final ref = FirebaseStorage.instance.ref().child(
+          'postImages/$imageID'); //path to push the image to firebase storage
+      await ref.delete();
+
+      dbPost.doc(postId).delete();
+      //updating the post
+
+      return 'success';
+    } on FirebaseException catch (e) {
+      print(e);
+
+      return '';
+    }
+  }
 }

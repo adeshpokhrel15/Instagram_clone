@@ -16,6 +16,7 @@ class PostProvider {
     required String detail,
     required XFile image,
     required String userId,
+    required Like likes,
     //image type is File type
   }) async {
     try {
@@ -34,6 +35,7 @@ class PostProvider {
         'imageUrl': url,
         'userId': userId,
         'imageId': imageID,
+        'likes': likes.toJson(),
       });
 
       return 'success';
@@ -54,13 +56,13 @@ class PostProvider {
     return querySnapshot.docs.map((e) {
       final data = e.data() as Map<String, dynamic>;
       return Post(
-        title: data['title'],
-        detail: data['detail'],
-        imageUrl: data['imageUrl'],
-        id: e.id,
-        userId: data['userId'],
-        imageId: data['imageId'],
-      );
+          title: data['title'],
+          detail: data['detail'],
+          imageUrl: data['imageUrl'],
+          id: e.id,
+          userId: data['userId'],
+          imageId: data['imageId'],
+          likes: Like.fromJson(data['like']));
     }).toList();
   }
 }
